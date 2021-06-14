@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title = 'Contact List'>
+        <br/>
+            <h1>Enter department name :  </h1>
+            <lightning-input 
+            type="text"
+            name="Department"
+            placeholder="type here..."
+            title={DepartmentOfContact} 
+            onchange={inputChangeHandler}>
+        </lightning-input> 
+        <lightning-button title="Display Contacts" 
+            label="Display Contacts" 
+            variant="brand-outline" 
+            onclick={getContactDetails}>
+        </lightning-button>
+        <br/>
+        <div if:true = {showContactList}>
+        <lightning-datatable
+            key-field="External_Id__c"
+            data={conList}
+            hide-checkbox-column
+            columns={columns}>
+        </lightning-datatable>
+    </div>
+    </lightning-card>
+</template>

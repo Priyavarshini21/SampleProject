@@ -1,0 +1,43 @@
+<template>
+    <lightning-card title="Currency Exchange Rate" icon-name="utility:all" >
+        <lightning-combobox title="Select Currency" 
+            label=" Base Currency"
+            value={fromCurrencyValue}
+            placeholder="-- Select currency type --"
+            options={options}
+            onchange={handleFromCurrencyChange}
+            required>
+        </lightning-combobox>
+        <br/>
+        <div class="spinner" if:true ={isLoading} >
+            <div role="status" class="slds-spinner slds-spinner_large slds-spinner_brand">
+              <div class="slds-spinner__dot-a"></div>
+              <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div> 
+        <lightning-combobox title="Select Currency" 
+            label="To Currency"
+            value={toCurrencyValue}
+            placeholder="-- Select currency type --"
+            options={toCurrencyOptions}
+            onchange={handleToCurrencyChange}
+            required>
+        </lightning-combobox>
+        <br/>
+        <lightning-button title="Currency Conversion" 
+                            label="Conversion Rate" 
+                            variant="destructive-text" 
+                            onclick={handleCurrencyConversion}>
+        </lightning-button>
+        <br/>
+        <template if:true={conversionData}>    
+            <div class="slds-p-around_medium" id="modal-content-id-1">
+                    <div style="font-size: 20px">
+                        <h1>Exchange rate from Currency <b style="color:rgb(111, 0, 255);">{fromCurrencyValue}</b> to <b style="color:rgb(0, 89, 255);">{toCurrencyValue}</b> =>   <b style="color:rgb(216, 32, 0);">{conversionData.Exchange_Rate}</b>
+                        </h1>
+                    </div>
+                    <br/>      
+            </div>
+        </template>
+    </lightning-card>
+</template>
